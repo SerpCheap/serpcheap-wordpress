@@ -77,13 +77,43 @@ final class Plugin {
 	}
 
 	private function make_client(): ClientInterface {
+		// 1) Explicit constants (dev / self-hosted override).
+		if ( defined( 'SERPCHEAP_API_URL' ) && defined( 'SERPCHEAP_API_KEY' ) && SERPCHEAP_API_KEY ) {
+			return new HttpClient( SERPCHEAP_API_URL, SERPCHEAP_API_KEY );
+		}
+		// 2) A real OAuth connection always wins over the demo default.
+		$real = self::real_connection();
+		if ( null !== $real ) {
+			return new HttpClient( $real['base_url'], $real['key'] );
+		}
+		// 3) Demo mode for offline UX exploration.
 		if ( defined( 'SERPCHEAP_MOCK' ) && SERPCHEAP_MOCK ) {
 			return new MockClient();
 		}
+		// 4) Unconfigured — will surface as "not connected" until the user connects.
+		return new HttpClient( 'https://api.serp.cheap', '' );
+	}
+
+	/**
+	 * The stored, real (non-demo) connection with a decryptable key, or null.
+	 * A decrypt failure (e.g. wp-config salts rotated) returns null so the UI
+	 * degrades to "reconnect" instead of erroring.
+	 *
+	 * @return array{base_url:string,key:string}|null
+	 */
+	public static function real_connection(): ?array {
 		$conn = self::connection();
-		$base = defined( 'SERPCHEAP_API_URL' ) ? SERPCHEAP_API_URL : ( isset( $conn['base_url'] ) ? $conn['base_url'] : 'https://api.serp.cheap' );
-		$key  = defined( 'SERPCHEAP_API_KEY' ) ? SERPCHEAP_API_KEY : ( isset( $conn['api_key'] ) ? $conn['api_key'] : '' );
-		return new HttpClient( $base, $key );
+		if ( empty( $conn['connected'] ) || ! empty( $conn['demo'] ) ) {
+			return null;
+		}
+		$key = SecretStore::decrypt( (string) get_option( 'serpcheap_api_key_enc', '' ) );
+		if ( null === $key || '' === $key ) {
+			return null;
+		}
+		return array(
+			'base_url' => isset( $conn['base_url'] ) ? (string) $conn['base_url'] : 'https://api.serp.cheap',
+			'key'      => $key,
+		);
 	}
 
 	public function trackers(): TrackersRepository {
@@ -122,8 +152,7 @@ final class Plugin {
 		if ( defined( 'SERPCHEAP_API_KEY' ) && SERPCHEAP_API_KEY ) {
 			return true;
 		}
-		$conn = self::connection();
-		return ! empty( $conn['connected'] );
+		return null !== self::real_connection();
 	}
 
 	/** Allowed country codes (mirrors the API's gl enum). */

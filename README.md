@@ -2,62 +2,55 @@
 
 Track where your posts, pages, WooCommerce products, category archives and home
 page rank on Google — right inside the WordPress admin. Powered by the
-[serp.cheap](https://serp.cheap) Google Search API.
+[serp.cheap](https://serp.cheap) Search API.
 
-> Free plugin. You only pay for the serp.cheap API credits your rank checks consume.
+> Free plugin. You only pay for the serp.cheap API credits your rank checks consume —
+> and the UI shows the cost of every choice up front.
 
 ## Features
 
-- **Track any target** — posts, pages, WooCommerce products, category & product
+- **One-click connect** — "Connect to serp.cheap" runs a secure OAuth
+  (Authorization-Code + PKCE) flow; a scoped, per-site API key is issued
+  server-to-server and stored **encrypted**. It never passes through the browser.
+- **Track anything** — posts, pages, WooCommerce products, category & product
   category archives, the site home, or any URL.
-- **Per-target tracking** from the edit screen, with an inline mini-dashboard
-  (current rank + sparkline).
-- **Central dashboard** — a custom admin page aggregating every tracker, with
-  metric cards, trend sparklines, a detail drawer with rank-history charts,
-  search and filters.
-- **Per-tracker scheduling** — hourly, 6h, 12h, daily, weekly, manual, or a
-  custom interval. Global default plus per-tracker override.
-- **Search depth** — choose how deep to scan (Top 10 → Top 100); default Top 10.
-  Global default plus per-tracker override.
-- **Credit-cost visibility** — live cost simulation before you create a tracker,
-  per-tracker monthly projection, and an aggregate monthly estimate. See exactly
-  what each decision costs.
-- **Configurable alerts** — rank drops, leaving the top 10/3, dropping out of
-  results, recovering into the top 10. In-app alert feed + optional email.
-- **Rank column** on post/product list screens and a **dashboard widget** summary.
-- **Theme-aware UI** — follows the admin color scheme you picked in your profile,
-  and is fully responsive (desktop / tablet / phone).
+- **Per-target tracking** from the edit screen, with an inline rank + sparkline.
+- **Custom dashboard** that follows your admin colour scheme (theme-aware) and is
+  fully responsive: metric cards, trend sparklines, a detail drawer with
+  rank-history charts, search and filters.
+- **Per-tracker schedule** (hourly → weekly, or manual) and **search depth**
+  (Top 10 → Top 100) — with global defaults and per-tracker overrides.
+- **Credit-cost visibility** — live estimate before you create a tracker, a
+  per-tracker monthly projection, and an account-wide monthly total.
+- **Configurable alerts** — rank drops, leaving the top 10/3, dropping out,
+  recovering — with an in-app feed and optional email.
+- **Rank column** on post/product lists and a **Dashboard widget** summary.
 - WordPress 6.0+ · PHP 7.4+ · WooCommerce 7.0+ (optional).
 
 ## Install
 
-Copy the `serpcheap-rank-tracking/` directory into `wp-content/plugins/` and
-activate it from **Plugins** in wp-admin. The built admin app under
+Install via **Plugins → Add New → Upload** with a zip of `serpcheap-rank-tracking/`,
+or copy that directory into `wp-content/plugins/`. The built admin app under
 `serpcheap-rank-tracking/build/` is committed, so no build step is required to run it.
 
-## Local development
+Then open **serp.cheap → Settings → Connect to serp.cheap**.
 
-A one-command Docker stack (WordPress + WooCommerce + a fake serp.cheap API that
-returns full SERP responses over real HTTP) lives in [`dev/`](dev/):
-
-```bash
-cd dev
-docker compose up -d --build
-docker compose logs -f wpcli   # prints the URLs when ready
-```
-
-- Site: http://localhost:8088 · Admin: `admin` / `admin`
-
-See [`dev/README.md`](dev/README.md) for details.
-
-## Building the admin app
-
-The central dashboard is a React app built with `@wordpress/scripts`:
+## Development
 
 ```bash
 cd serpcheap-rank-tracking
+composer install      # PHP dev deps (PHPUnit)
+composer test         # unit tests (cost model, scheduling, encrypted key store)
+
 npm install
-npm run build      # or: npm run start  (watch mode)
+npm run build         # build the React admin app (or: npm run start)
+```
+
+A one-command Docker stack (WordPress + WooCommerce + a fake serp.cheap API) lives
+in [`dev/`](dev/) for local development:
+
+```bash
+cd dev && docker compose up -d --build
 ```
 
 ## License

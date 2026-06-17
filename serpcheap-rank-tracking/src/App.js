@@ -485,6 +485,20 @@ export default function App() {
 				</div>
 			) }
 
+			{ ! boot.mock && ! boot.connected && (
+				<div className="scrt-connect-banner">
+					<span>
+						<strong>{ __( 'Not connected.', 'serpcheap-rank-tracking' ) }</strong>{' '}
+						{ __( 'Connect your serp.cheap account to start tracking real Google rankings.', 'serpcheap-rank-tracking' ) }
+					</span>
+					{ boot.settingsUrl && (
+						<a className="scrt-btn scrt-btn-primary" href={ boot.settingsUrl }>
+							{ __( 'Connect →', 'serpcheap-rank-tracking' ) }
+						</a>
+					) }
+				</div>
+			) }
+
 			<Metrics trackers={ trackers } />
 
 			<div className="scrt-toolbar">

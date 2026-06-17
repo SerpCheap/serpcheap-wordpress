@@ -1,0 +1,15 @@
+{
+    "name": "serpcheap/rank-tracking",
+    "description": "serp.cheap Rank Tracking — track Google rankings from the WordPress admin.",
+    "license": "GPL-2.0-or-later",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6 || ^10.5 || ^11.0"
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       serp.cheap Rank Tracking
  * Plugin URI:        https://serp.cheap
- * Description:       Track where your posts, pages, products, categories and home page rank on Google — powered by the serp.cheap Google Search API. (Demo build: uses a mocked API so you can test the full UX offline.)
- * Version:           0.1.0-demo
+ * Description:       Track where your posts, pages, products, categories and home page rank on Google — powered by the serp.cheap Google Search API.
+ * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            serp.cheap
@@ -20,16 +20,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SERPCHEAP_RT_VERSION', '0.1.0-demo' );
+define( 'SERPCHEAP_RT_VERSION', '1.0.0' );
 define( 'SERPCHEAP_RT_FILE', __FILE__ );
 define( 'SERPCHEAP_RT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SERPCHEAP_RT_URL', plugin_dir_url( __FILE__ ) );
 define( 'SERPCHEAP_RT_BASENAME', plugin_basename( __FILE__ ) );
 
-// Demo/mock mode: forced on for this build. Set to false (or define SERPCHEAP_MOCK
-// false in wp-config.php) once the real OAuth connect + live API are wired (Phase 2).
+// serp.cheap account/OAuth host (the "Connect" flow). Override in wp-config.php
+// for staging.
+if ( ! defined( 'SERPCHEAP_APP_URL' ) ) {
+	define( 'SERPCHEAP_APP_URL', 'https://app.serp.cheap' );
+}
+
+// Offline demo mode (developer-only): when explicitly enabled in wp-config.php,
+// and only while there is no real connection, the plugin serves mock ranks so the
+// UX can be explored without an account. OFF by default — a real OAuth connection
+// always takes precedence regardless (see Plugin::make_client).
 if ( ! defined( 'SERPCHEAP_MOCK' ) ) {
-	define( 'SERPCHEAP_MOCK', true );
+	define( 'SERPCHEAP_MOCK', false );
 }
 
 /**

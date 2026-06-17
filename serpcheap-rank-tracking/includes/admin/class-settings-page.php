@@ -10,6 +10,7 @@ namespace Serpcheap\RankTracking\Admin;
 
 use Serpcheap\RankTracking\Alerts;
 use Serpcheap\RankTracking\Plugin;
+use Serpcheap\RankTracking\SecretStore;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +27,8 @@ final class SettingsPage {
 
 	public function register(): void {
 		add_action( 'admin_menu', array( $this, 'menu' ), 20 );
-		add_action( 'admin_post_serpcheap_connect_demo', array( $this, 'connect_demo' ) );
+		add_action( 'admin_post_serpcheap_connect_start', array( $this, 'connect_start' ) );
+		add_action( 'admin_post_serpcheap_connect_cb', array( $this, 'connect_callback' ) );
 		add_action( 'admin_post_serpcheap_disconnect', array( $this, 'disconnect' ) );
 		add_action( 'admin_post_serpcheap_save_settings', array( $this, 'save_settings' ) );
 		add_action( 'admin_post_serpcheap_save_alerts', array( $this, 'save_alerts' ) );
@@ -48,28 +50,31 @@ final class SettingsPage {
 			return;
 		}
 		$conn      = Plugin::connection();
-		$connected = ! empty( $conn['connected'] );
+		$connected = Plugin::is_connected();
 		$schedule  = get_option( 'serpcheap_default_schedule', 'daily' );
 
 		echo '<div class="wrap serpcheap-rt-wrap"><h1>' . esc_html__( 'serp.cheap Rank Tracking — Settings', 'serpcheap-rank-tracking' ) . '</h1>';
+
+		$this->status_notice();
 
 		// Connection card.
 		echo '<div class="card">';
 		echo '<h2>' . esc_html__( 'Connection', 'serpcheap-rank-tracking' ) . '</h2>';
 		if ( $connected ) {
 			printf(
-				'<p>%s <code>%s</code>%s</p>',
-				esc_html__( 'Connected', 'serpcheap-rank-tracking' ),
-				esc_html( isset( $conn['host'] ) ? $conn['host'] : wp_parse_url( home_url(), PHP_URL_HOST ) ),
-				! empty( $conn['demo'] ) ? ' <span class="serpcheap-badge">' . esc_html__( 'demo', 'serpcheap-rank-tracking' ) . '</span>' : ''
+				'<p>%s <code>%s</code></p>',
+				esc_html__( 'Connected to serp.cheap as', 'serpcheap-rank-tracking' ),
+				esc_html( isset( $conn['account_email'] ) ? $conn['account_email'] : ( isset( $conn['host'] ) ? $conn['host'] : wp_parse_url( home_url(), PHP_URL_HOST ) ) )
 			);
-			if ( isset( $conn['balance'] ) ) {
-				printf( '<p>%s <strong>%s</strong></p>', esc_html__( 'Demo credits:', 'serpcheap-rank-tracking' ), esc_html( number_format_i18n( (int) $conn['balance'] ) ) );
-			}
+			echo '<p class="description">' . esc_html__( 'Rank checks now run against your serp.cheap account and consume its credits.', 'serpcheap-rank-tracking' ) . '</p>';
 			$this->button_form( 'serpcheap_disconnect', __( 'Disconnect', 'serpcheap-rank-tracking' ), 'button' );
 		} else {
-			echo '<p>' . esc_html__( 'Connect your serp.cheap account to start tracking rankings. (This demo build uses a mocked connection — no real account or key is created.)', 'serpcheap-rank-tracking' ) . '</p>';
-			$this->button_form( 'serpcheap_connect_demo', __( 'Connect (Demo)', 'serpcheap-rank-tracking' ), 'button button-primary' );
+			echo '<p>' . esc_html__( 'Connect your serp.cheap account to start tracking real Google rankings. You will be sent to serp.cheap to authorize this site; a per-site key is created for you.', 'serpcheap-rank-tracking' ) . '</p>';
+			if ( ! SecretStore::available() ) {
+				echo '<p class="description" style="color:#b32d2e">' . esc_html__( 'Secure key storage is unavailable on this server (libsodium / auth salts missing). Connecting is disabled.', 'serpcheap-rank-tracking' ) . '</p>';
+			} else {
+				$this->button_form( 'serpcheap_connect_start', __( 'Connect to serp.cheap', 'serpcheap-rank-tracking' ), 'button button-primary' );
+			}
 		}
 		echo '</div>';
 
@@ -174,6 +179,24 @@ final class SettingsPage {
 		$this->redirect_back( 'saved' );
 	}
 
+	private function status_notice(): void {
+		$status = isset( $_GET['serpcheap_status'] ) ? sanitize_key( wp_unslash( $_GET['serpcheap_status'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only status flag.
+		if ( '' === $status ) {
+			return;
+		}
+		$map = array(
+			'connected'           => array( 'success', __( 'Connected to serp.cheap.', 'serpcheap-rank-tracking' ) ),
+			'disconnected'        => array( 'success', __( 'Disconnected from serp.cheap.', 'serpcheap-rank-tracking' ) ),
+			'connect_failed'      => array( 'error', __( 'Could not complete the connection. Please try again.', 'serpcheap-rank-tracking' ) ),
+			'connect_unavailable' => array( 'error', __( 'Secure key storage is unavailable on this server.', 'serpcheap-rank-tracking' ) ),
+			'saved'               => array( 'success', __( 'Saved.', 'serpcheap-rank-tracking' ) ),
+		);
+		if ( ! isset( $map[ $status ] ) ) {
+			return;
+		}
+		printf( '<div class="notice notice-%s is-dismissible"><p>%s</p></div>', esc_attr( $map[ $status ][0] ), esc_html( $map[ $status ][1] ) );
+	}
+
 	private function button_form( string $action, string $label, string $class ): void {
 		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '">';
 		echo '<input type="hidden" name="action" value="' . esc_attr( $action ) . '" />';
@@ -182,24 +205,112 @@ final class SettingsPage {
 		echo '</form>';
 	}
 
-	public function connect_demo(): void {
-		$this->guard( 'serpcheap_connect_demo' );
+	/** Step 1: build a PKCE challenge + state, then redirect to the serp.cheap consent screen. */
+	public function connect_start(): void {
+		$this->guard( 'serpcheap_connect_start' );
+
+		if ( ! SecretStore::available() ) {
+			$this->redirect_back( 'connect_unavailable' );
+		}
+
+		$verifier  = sodium_bin2base64( random_bytes( 64 ), SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING );
+		$challenge = sodium_bin2base64( hash( 'sha256', $verifier, true ), SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING );
+		$state     = wp_generate_password( 40, false );
+
+		set_transient( 'serpcheap_connect_' . $state, array( 'verifier' => $verifier ), 10 * MINUTE_IN_SECONDS );
+
+		$url = SERPCHEAP_APP_URL . '/connect/authorize?' . http_build_query(
+			array(
+				'origin'                => 'wordpress',
+				'site'                  => wp_parse_url( home_url(), PHP_URL_HOST ),
+				'redirect_uri'          => admin_url( 'admin-post.php?action=serpcheap_connect_cb' ),
+				'state'                 => $state,
+				'code_challenge'        => $challenge,
+				'code_challenge_method' => 'S256',
+			)
+		);
+
+		wp_redirect( $url ); // phpcs:ignore WordPress.Security.SafeRedirect -- external, intentional.
+		exit;
+	}
+
+	/** Step 2: serp.cheap redirected back with ?code&state; exchange it server-side for the key. */
+	public function connect_callback(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'serpcheap-rank-tracking' ) );
+		}
+
+		// The state IS the CSRF token here: it must match the transient we stored.
+		$state = isset( $_GET['state'] ) ? sanitize_text_field( wp_unslash( $_GET['state'] ) ) : '';
+		$code  = isset( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
+		$stash = $state ? get_transient( 'serpcheap_connect_' . $state ) : false;
+
+		if ( $state ) {
+			delete_transient( 'serpcheap_connect_' . $state );
+		}
+		if ( ! is_array( $stash ) || empty( $stash['verifier'] ) || '' === $code ) {
+			$this->redirect_back( 'connect_failed' );
+		}
+
+		$response = wp_remote_post(
+			SERPCHEAP_APP_URL . '/connect/claim',
+			array(
+				'timeout'   => 20,
+				'sslverify' => true,
+				'headers'   => array( 'Content-Type' => 'application/json', 'Accept' => 'application/json' ),
+				'body'      => wp_json_encode( array( 'code' => $code, 'code_verifier' => $stash['verifier'] ) ),
+			)
+		);
+
+		if ( is_wp_error( $response ) || (int) wp_remote_retrieve_response_code( $response ) >= 400 ) {
+			$this->redirect_back( 'connect_failed' );
+		}
+
+		$body = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( ! is_array( $body ) || empty( $body['api_key'] ) ) {
+			$this->redirect_back( 'connect_failed' );
+		}
+
+		$enc = SecretStore::encrypt( (string) $body['api_key'] );
+		if ( '' === $enc ) {
+			$this->redirect_back( 'connect_failed' );
+		}
+
+		update_option( 'serpcheap_api_key_enc', $enc, false );
 		update_option(
 			'serpcheap_connection',
 			array(
-				'connected'    => true,
-				'demo'         => true,
-				'host'         => wp_parse_url( home_url(), PHP_URL_HOST ),
-				'balance'      => 100000,
-				'connected_at' => current_time( 'mysql', true ),
+				'connected'     => true,
+				'demo'          => false,
+				'base_url'      => isset( $body['base_url'] ) ? esc_url_raw( (string) $body['base_url'] ) : 'https://api.serp.cheap',
+				'host'          => wp_parse_url( home_url(), PHP_URL_HOST ),
+				'origin'        => 'wordpress',
+				'account_email' => isset( $body['account_email'] ) ? sanitize_email( (string) $body['account_email'] ) : '',
+				'connected_at'  => current_time( 'mysql', true ),
 			)
 		);
+
 		$this->redirect_back( 'connected' );
 	}
 
 	public function disconnect(): void {
 		$this->guard( 'serpcheap_disconnect' );
+
+		// Best-effort remote revoke so the key is killed server-side too.
+		$real = Plugin::real_connection();
+		if ( null !== $real ) {
+			wp_remote_post(
+				SERPCHEAP_APP_URL . '/connect/revoke',
+				array(
+					'timeout'   => 12,
+					'sslverify' => true,
+					'headers'   => array( 'Authorization' => 'Bearer ' . $real['key'], 'Accept' => 'application/json' ),
+				)
+			);
+		}
+
 		delete_option( 'serpcheap_connection' );
+		delete_option( 'serpcheap_api_key_enc' );
 		$this->redirect_back( 'disconnected' );
 	}
 

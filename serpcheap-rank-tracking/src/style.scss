@@ -515,6 +515,24 @@ $accent-soft2: var(--scrt-accent-soft2, rgba(34, 113, 177, 0.22));
 	label { font-size: 12px; font-weight: 600; color: $muted; display: flex; flex-direction: column; gap: 6px; }
 }
 
+/* ---------- not-connected banner ---------- */
+.scrt-connect-banner {
+	margin-top: 12px;
+	padding: 12px 16px;
+	border-radius: $radius;
+	background: $accent-soft;
+	border: 1px solid $accent-soft2;
+	color: $ink;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+
+	.scrt-btn-primary { flex: none; }
+}
+
 /* ---------- alerts bell ---------- */
 .scrt-bell { position: relative; padding: 0 12px; font-size: 15px; }
 .scrt-bell-badge {

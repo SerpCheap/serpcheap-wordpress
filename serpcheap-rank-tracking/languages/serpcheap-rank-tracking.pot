@@ -1,0 +1,748 @@
+# Copyright (C) 2026 serp.cheap
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: serp.cheap Rank Tracking 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/plugin\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-06-17T21:08:41+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: serpcheap-rank-tracking\n"
+
+#. Plugin Name of the plugin
+#: serpcheap-rank-tracking.php
+#: includes/admin/class-admin-menu.php:36
+#: includes/admin/class-term-fields.php:38
+msgid "serp.cheap Rank Tracking"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: serpcheap-rank-tracking.php
+msgid "https://serp.cheap"
+msgstr ""
+
+#. Description of the plugin
+#: serpcheap-rank-tracking.php
+msgid "Track where your posts, pages, products, categories and home page rank on Google — powered by the serp.cheap Google Search API."
+msgstr ""
+
+#. Author of the plugin
+#: serpcheap-rank-tracking.php
+#: includes/admin/class-admin-menu.php:37
+msgid "serp.cheap"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:47
+#: includes/admin/class-admin-menu.php:48
+#: src/App.js:34
+msgid "Rank Tracking"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:176
+#: src/lib.js:4
+msgid "Every hour"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:177
+#: src/lib.js:5
+msgid "Every 6 hours"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:178
+#: src/lib.js:6
+msgid "Every 12 hours"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:179
+#: includes/admin/class-settings-page.php:89
+#: src/lib.js:7
+msgid "Daily"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:180
+#: includes/admin/class-settings-page.php:89
+#: src/lib.js:8
+msgid "Weekly"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:181
+#: includes/admin/class-settings-page.php:89
+#: src/lib.js:9
+msgid "Manual only"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:184
+msgid "Add keyword"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:185
+#: includes/admin/class-trackers-list-table.php:42
+#: src/App.js:119
+#: src/App.js:252
+#: src/App.js:532
+msgid "Keyword"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:186
+#: src/App.js:269
+msgid "Domain"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:187
+#: src/App.js:270
+msgid "Exact URL"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:188
+#: includes/admin/class-trackers-list-table.php:118
+msgid "Refresh"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:189
+#: src/App.js:158
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:190
+msgid "Not in top 100"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:191
+#: src/App.js:354
+msgid "Checking…"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:192
+msgid "No keywords tracked yet. Add one above."
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:193
+#: src/App.js:454
+msgid "Remove this tracker and its history?"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:194
+#: src/App.js:278
+msgid "Check"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:195
+msgid "cr/check"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:196
+#: src/App.js:149
+msgid "cr/mo"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:197
+#: src/App.js:150
+msgid "on demand"
+msgstr ""
+
+#: includes/admin/class-admin-menu.php:198
+msgid "Est. cost"
+msgstr ""
+
+#: includes/admin/class-columns.php:38
+#: includes/admin/class-trackers-list-table.php:46
+#: src/App.js:130
+#: src/App.js:535
+msgid "Rank"
+msgstr ""
+
+#. translators: %d: number of tracked keywords
+#: includes/admin/class-columns.php:66
+#: includes/admin/class-columns.php:80
+#, php-format
+msgid "%d keyword"
+msgid_plural "%d keywords"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/class-dashboard-widget.php:35
+#: includes/admin/class-metabox.php:45
+msgid "serp.cheap — Rank Tracking"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:93
+#: src/App.js:79
+msgid "Tracked"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:94
+#: src/App.js:80
+msgid "Avg position"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:95
+#: src/App.js:88
+#: src/components.js:86
+msgid "Not found"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:96
+msgid "Credits / month"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:101
+msgid "Recent alerts"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:115
+msgid "Top movers · 7 days"
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:131
+msgid "No trackers yet — add keywords from any post, product or category."
+msgstr ""
+
+#: includes/admin/class-dashboard-widget.php:138
+msgid "Open dashboard"
+msgstr ""
+
+#: includes/admin/class-metabox.php:61
+#: includes/admin/class-term-fields.php:43
+#: src/App.js:523
+msgid "Loading…"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:40
+#: includes/admin/class-settings-page.php:41
+#: src/App.js:52
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:56
+msgid "serp.cheap Rank Tracking — Settings"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:62
+msgid "Connection"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:66
+msgid "Connected to serp.cheap as"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:69
+msgid "Rank checks now run against your serp.cheap account and consume its credits."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:70
+msgid "Disconnect"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:72
+msgid "Connect your serp.cheap account to start tracking real Google rankings. You will be sent to serp.cheap to authorize this site; a per-site key is created for you."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:74
+msgid "Secure key storage is unavailable on this server (libsodium / auth salts missing). Connecting is disabled."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:76
+msgid "Connect to serp.cheap"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:83
+msgid "Defaults"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:87
+msgid "Default refresh"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:93
+msgid "Each refresh consumes serp.cheap credits (one rank check per keyword)."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:97
+msgid "Default search depth"
+msgstr ""
+
+#. translators: 1: top N positions, 2: page count, 3: credits per check
+#: includes/admin/class-settings-page.php:105
+#, php-format
+msgid "Top %1$d (%2$d page(s)) — ~%3$d credits/check"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:109
+msgid "How deep to scan Google. More pages find lower-ranked positions but cost more per check. Each tracker can override this."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:111
+msgid "Save"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:118
+#: src/App.js:44
+#: src/App.js:368
+msgid "Alerts"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:124
+msgid "Enable alerts"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:124
+msgid "Record alerts when rankings change."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:126
+msgid "Rank-drop threshold"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:128
+msgid "positions (0 disables drop alerts)"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:130
+msgid "Left top 10"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:130
+msgid "Alert when a keyword falls out of the top 10."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:131
+msgid "Left top 3"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:131
+msgid "Alert when a keyword falls out of the top 3."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:132
+msgid "Dropped out of results"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:132
+msgid "Alert when a keyword is no longer found."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:133
+msgid "Recovered into top 10"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:133
+msgid "Positive alert when a keyword climbs back into the top 10."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:134
+msgid "Email me alerts"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:134
+msgid "Send an email when an alert fires."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:136
+msgid "Send to"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:140
+msgid "Save alerts"
+msgstr ""
+
+#: includes/admin/class-settings-page.php:144
+msgid "About this plugin"
+msgstr ""
+
+#. translators: 1: terms link, 2: privacy link
+#: includes/admin/class-settings-page.php:148
+#, php-format
+msgid "This plugin connects to the paid <a href=\"%1$s\" target=\"_blank\" rel=\"noopener\">serp.cheap</a> Google Search API to fetch rankings. The page URL, keyword and country you track are sent to api.serp.cheap. See the <a href=\"%2$s\" target=\"_blank\" rel=\"noopener\">Terms</a> and Privacy Policy."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:188
+msgid "Connected to serp.cheap."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:189
+msgid "Disconnected from serp.cheap."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:190
+msgid "Could not complete the connection. Please try again."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:191
+msgid "Secure key storage is unavailable on this server."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:192
+msgid "Saved."
+msgstr ""
+
+#: includes/admin/class-settings-page.php:240
+#: includes/admin/class-settings-page.php:333
+msgid "Not allowed."
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:43
+#: src/App.js:124
+#: src/App.js:239
+#: src/App.js:533
+msgid "Target"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:44
+#: src/App.js:127
+#: src/App.js:257
+#: src/App.js:327
+#: src/App.js:534
+msgid "Country"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:45
+#: src/App.js:267
+msgid "Match"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:47
+msgid "Δ 7d"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:48
+#: src/App.js:136
+#: src/App.js:537
+msgid "Trend"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:49
+msgid "Last checked"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:56
+#: src/App.js:155
+#: src/App.js:354
+msgid "Refresh now"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:57
+#: includes/admin/class-trackers-list-table.php:123
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:155
+msgid "—"
+msgstr ""
+
+#. translators: %s: human time diff
+#: includes/admin/class-trackers-list-table.php:192
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/admin/class-trackers-list-table.php:201
+msgid "No trackers yet. Add keywords from a post/page/product edit screen, or track the home page above."
+msgstr ""
+
+#. translators: %d: previous rank
+#: includes/class-alerts.php:93
+#, php-format
+msgid "Dropped out of results (was #%d)."
+msgstr ""
+
+#. translators: %d: new rank
+#: includes/class-alerts.php:107
+#, php-format
+msgid "Now ranking at #%d."
+msgstr ""
+
+#. translators: 1: positions dropped, 2: old rank, 3: new rank
+#: includes/class-alerts.php:123
+#, php-format
+msgid "Fell %1$d positions (#%2$d → #%3$d)."
+msgstr ""
+
+#. translators: %d: new rank
+#: includes/class-alerts.php:137
+#, php-format
+msgid "Left the top 3 (now #%d)."
+msgstr ""
+
+#. translators: %d: new rank
+#: includes/class-alerts.php:147
+#, php-format
+msgid "Left the top 10 (now #%d)."
+msgstr ""
+
+#. translators: 1: old rank, 2: new rank
+#: includes/class-alerts.php:159
+#, php-format
+msgid "Back in the top 10 (#%1$d → #%2$d)."
+msgstr ""
+
+#. translators: %s: keyword
+#: includes/class-alerts.php:179
+#, php-format
+msgid "[serp.cheap] Rank alert for \"%s\""
+msgstr ""
+
+#. translators: %s: keyword
+#: includes/class-alerts.php:184
+#, php-format
+msgid "Keyword: %s"
+msgstr ""
+
+#: includes/cron/class-scheduler.php:30
+msgid "Every 5 minutes (serp.cheap)"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:43
+msgid "(untitled)"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:46
+msgid "(term)"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:48
+#: src/App.js:241
+msgid "Home page"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:51
+msgid "(custom URL)"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:57
+msgid "Post / Page"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:58
+msgid "Category"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:59
+#: src/App.js:106
+msgid "Home"
+msgstr ""
+
+#: includes/data/class-target-resolver.php:60
+#: src/App.js:242
+msgid "Custom URL"
+msgstr ""
+
+#: includes/rest/class-rest-trackers.php:160
+msgid "Tracker not found."
+msgstr ""
+
+#: includes/rest/class-rest-trackers.php:202
+msgid "Invalid target type."
+msgstr ""
+
+#: includes/rest/class-rest-trackers.php:207
+msgid "A keyword (1–255 chars) is required."
+msgstr ""
+
+#: includes/rest/class-rest-trackers.php:224
+msgid "Could not resolve a URL for this target."
+msgstr ""
+
+#: includes/rest/class-rest-trackers.php:243
+msgid "Could not save the tracker."
+msgstr ""
+
+#: src/App.js:40
+msgid "Search keywords…"
+msgstr ""
+
+#: src/App.js:49
+msgid "Track target"
+msgstr ""
+
+#: src/App.js:82
+msgid "Top mover (7d)"
+msgstr ""
+
+#: src/App.js:93
+msgid "Est. credits / month"
+msgstr ""
+
+#: src/App.js:95
+msgid "left"
+msgstr ""
+
+#: src/App.js:103
+msgid "All targets"
+msgstr ""
+
+#: src/App.js:104
+msgid "Posts & products"
+msgstr ""
+
+#: src/App.js:105
+msgid "Categories"
+msgstr ""
+
+#: src/App.js:107
+msgid "URLs"
+msgstr ""
+
+#: src/App.js:133
+#: src/App.js:536
+msgid "7d"
+msgstr ""
+
+#: src/App.js:139
+#: src/App.js:538
+msgid "Schedule"
+msgstr ""
+
+#: src/App.js:171
+#: src/components.js:19
+#, js-format
+msgid "Top %d"
+msgstr ""
+
+#: src/App.js:177
+#, js-format
+msgid "%s · no recurring cost — runs only on manual refresh."
+msgstr ""
+
+#: src/App.js:186
+msgid "cr / check"
+msgstr ""
+
+#: src/App.js:187
+msgid "up to"
+msgstr ""
+
+#: src/App.js:187
+msgid "cr / month"
+msgstr ""
+
+#: src/App.js:190
+msgid "High cost — fewer pages or lower frequency reduces it."
+msgstr ""
+
+#: src/App.js:209
+msgid "Enter a keyword."
+msgstr ""
+
+#: src/App.js:226
+msgid "Could not save."
+msgstr ""
+
+#: src/App.js:234
+msgid "Track a new target"
+msgstr ""
+
+#: src/App.js:236
+msgid "Track the home page or any URL. Posts, products and categories are tracked from their own edit screens."
+msgstr ""
+
+#: src/App.js:247
+msgid "URL"
+msgstr ""
+
+#: src/App.js:253
+msgid "best running shoes"
+msgstr ""
+
+#: src/App.js:274
+msgid "Depth"
+msgstr ""
+
+#: src/App.js:286
+msgid "Cancel"
+msgstr ""
+
+#: src/App.js:289
+msgid "Saving…"
+msgstr ""
+
+#: src/App.js:289
+msgid "Track"
+msgstr ""
+
+#: src/App.js:319
+msgid "Position"
+msgstr ""
+
+#: src/App.js:323
+msgid "Change 7d"
+msgstr ""
+
+#: src/App.js:331
+msgid "Est. / month"
+msgstr ""
+
+#: src/App.js:334
+msgid "cr"
+msgstr ""
+
+#: src/App.js:342
+msgid "Check frequency"
+msgstr ""
+
+#: src/App.js:350
+msgid "Search depth"
+msgstr ""
+
+#: src/App.js:372
+msgid "Mark all read"
+msgstr ""
+
+#: src/App.js:379
+msgid "No alerts. Rank changes will show up here."
+msgstr ""
+
+#: src/App.js:395
+msgid "Configure alert rules →"
+msgstr ""
+
+#: src/App.js:483
+msgid "Demo mode"
+msgstr ""
+
+#: src/App.js:484
+msgid "ranks are mocked locally so you can test the full experience without a serp.cheap account."
+msgstr ""
+
+#: src/App.js:491
+msgid "Not connected."
+msgstr ""
+
+#: src/App.js:492
+msgid "Connect your serp.cheap account to start tracking real Google rankings."
+msgstr ""
+
+#: src/App.js:496
+msgid "Connect →"
+msgstr ""
+
+#: src/App.js:517
+msgid "of"
+msgstr ""
+
+#: src/App.js:526
+msgid "No trackers yet. Add a target, or track keywords from a post/product edit screen."
+msgstr ""
+
+#: src/components.js:66
+msgid "hours"
+msgstr ""
+
+#: src/lib.js:10
+msgid "Custom…"
+msgstr ""
+
+#: src/lib.js:19
+msgid "Manual"
+msgstr ""
+
+#: src/lib.js:22
+#: src/lib.js:25
+#: src/lib.js:27
+msgid "Every"
+msgstr ""

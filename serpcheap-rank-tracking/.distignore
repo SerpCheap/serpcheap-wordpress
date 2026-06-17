@@ -1,0 +1,18 @@
+# Excluded from the wp.org build (dev-only files). Built assets in build/ ship.
+/.git
+/.github
+/.wordpress-org
+/node_modules
+/vendor
+/src
+/tests
+/dev
+.distignore
+.gitignore
+.editorconfig
+composer.json
+composer.lock
+package.json
+package-lock.json
+phpunit.xml.dist
+webpack.config.js

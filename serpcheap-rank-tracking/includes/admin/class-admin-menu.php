@@ -85,6 +85,7 @@ final class AdminMenu {
 		);
 
 		wp_localize_script( 'serpcheap-rt-admin', 'serpcheapRT', $this->boot_data() );
+		wp_set_script_translations( 'serpcheap-rt-admin', 'serpcheap-rank-tracking', SERPCHEAP_RT_DIR . 'languages' );
 	}
 
 	/** Hex of the current user's admin color scheme accent (so the UI follows their theme). */
@@ -157,6 +158,7 @@ final class AdminMenu {
 		}
 
 		wp_localize_script( 'serpcheap-rt-app', 'serpcheapRT', $this->boot_data() );
+		wp_set_script_translations( 'serpcheap-rt-app', 'serpcheap-rank-tracking', SERPCHEAP_RT_DIR . 'languages' );
 	}
 
 	/** @return array<string,mixed> */
@@ -166,7 +168,7 @@ final class AdminMenu {
 			'nonce'      => wp_create_nonce( 'wp_rest' ),
 			'countries'  => Plugin::countries(),
 			'connected'  => Plugin::is_connected(),
-			'mock'       => (bool) ( defined( 'SERPCHEAP_MOCK' ) && SERPCHEAP_MOCK ),
+			'mock'       => $this->plugin->client() instanceof \Serpcheap\RankTracking\Api\MockClient,
 			'settingsUrl' => admin_url( 'admin.php?page=' . self::SETTINGS_SLUG ),
 			'pricing'    => Credits::model(),
 			'scheduleMinutes' => Plugin::schedule_presets(),
