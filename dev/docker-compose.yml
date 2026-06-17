@@ -1,0 +1,69 @@
+name: serpcheap-wp-demo
+
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wp
+      MARIADB_PASSWORD: wp
+    volumes:
+      - db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mock-api:
+    build: ./mock-api
+    ports:
+      - "8091:8090"   # exposed for debugging: http://localhost:8091/health
+
+  wordpress:
+    image: wordpress:php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8088:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        /* Drive the serp.cheap plugin against the local mock API (real HTTP). */
+        define('SERPCHEAP_MOCK', false);
+        define('SERPCHEAP_API_URL', 'http://mock-api:8090');
+        define('SERPCHEAP_API_KEY', 'demo-key-local');
+    volumes:
+      - wp:/var/www/html
+      - ../serpcheap-rank-tracking:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
+
+  wpcli:
+    image: wordpress:cli-php8.2
+    user: "33:33"
+    depends_on:
+      db:
+        condition: service_healthy
+      mock-api:
+        condition: service_started
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wp
+      WORDPRESS_DB_PASSWORD: wp
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - ../serpcheap-rank-tracking:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
+      - ./setup.sh:/setup.sh:ro
+      - ./seed.php:/seed.php:ro
+    entrypoint: ["sh", "/setup.sh"]
+    restart: "no"
+
+volumes:
+  db:
+  wp:

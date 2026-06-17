@@ -1,0 +1,13 @@
+{
+  "name": "serpcheap-rank-tracking",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Admin UI build for the serp.cheap Rank Tracking plugin.",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  }
+}
