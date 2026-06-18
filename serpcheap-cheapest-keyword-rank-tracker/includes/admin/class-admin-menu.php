@@ -19,8 +19,8 @@ final class AdminMenu {
 	/** @var Plugin */
 	private $plugin;
 
-	const MENU_SLUG     = 'serpcheap-rank-tracking';
-	const SETTINGS_SLUG = 'serpcheap-rank-tracking-settings';
+	const MENU_SLUG     = 'serpcheap-cheapest-keyword-rank-tracker';
+	const SETTINGS_SLUG = 'serpcheap-cheapest-keyword-rank-tracker-settings';
 
 	public function __construct( Plugin $plugin ) {
 		$this->plugin = $plugin;
@@ -33,8 +33,8 @@ final class AdminMenu {
 
 	public function menu(): void {
 		add_menu_page(
-			__( 'serp.cheap Rank Tracking', 'serpcheap-rank-tracking' ),
-			__( 'serp.cheap', 'serpcheap-rank-tracking' ),
+			__( 'serp.cheap Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			__( 'serp.cheap', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			'manage_options',
 			self::MENU_SLUG,
 			array( $this, 'render_central' ),
@@ -44,8 +44,8 @@ final class AdminMenu {
 
 		add_submenu_page(
 			self::MENU_SLUG,
-			__( 'Rank Tracking', 'serpcheap-rank-tracking' ),
-			__( 'Rank Tracking', 'serpcheap-rank-tracking' ),
+			__( 'Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			__( 'Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			'manage_options',
 			self::MENU_SLUG,
 			array( $this, 'render_central' )
@@ -85,7 +85,7 @@ final class AdminMenu {
 		);
 
 		wp_localize_script( 'serpcheap-rt-admin', 'serpcheapRT', $this->boot_data() );
-		wp_set_script_translations( 'serpcheap-rt-admin', 'serpcheap-rank-tracking', SERPCHEAP_RT_DIR . 'languages' );
+		wp_set_script_translations( 'serpcheap-rt-admin', 'serpcheap-cheapest-keyword-rank-tracker', SERPCHEAP_RT_DIR . 'languages' );
 	}
 
 	/** Hex of the current user's admin color scheme accent (so the UI follows their theme). */
@@ -158,7 +158,7 @@ final class AdminMenu {
 		}
 
 		wp_localize_script( 'serpcheap-rt-app', 'serpcheapRT', $this->boot_data() );
-		wp_set_script_translations( 'serpcheap-rt-app', 'serpcheap-rank-tracking', SERPCHEAP_RT_DIR . 'languages' );
+		wp_set_script_translations( 'serpcheap-rt-app', 'serpcheap-cheapest-keyword-rank-tracker', SERPCHEAP_RT_DIR . 'languages' );
 	}
 
 	/** @return array<string,mixed> */
@@ -173,29 +173,29 @@ final class AdminMenu {
 			'pricing'    => Credits::model(),
 			'scheduleMinutes' => Plugin::schedule_presets(),
 			'schedules'  => array(
-				'hourly' => __( 'Every hour', 'serpcheap-rank-tracking' ),
-				'6h'     => __( 'Every 6 hours', 'serpcheap-rank-tracking' ),
-				'12h'    => __( 'Every 12 hours', 'serpcheap-rank-tracking' ),
-				'daily'  => __( 'Daily', 'serpcheap-rank-tracking' ),
-				'weekly' => __( 'Weekly', 'serpcheap-rank-tracking' ),
-				'manual' => __( 'Manual only', 'serpcheap-rank-tracking' ),
+				'hourly' => __( 'Every hour', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'6h'     => __( 'Every 6 hours', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'12h'    => __( 'Every 12 hours', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'daily'  => __( 'Daily', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'weekly' => __( 'Weekly', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'manual' => __( 'Manual only', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			),
 			'i18n'       => array(
-				'add'        => __( 'Add keyword', 'serpcheap-rank-tracking' ),
-				'keyword'    => __( 'Keyword', 'serpcheap-rank-tracking' ),
-				'domain'     => __( 'Domain', 'serpcheap-rank-tracking' ),
-				'exact'      => __( 'Exact URL', 'serpcheap-rank-tracking' ),
-				'refresh'    => __( 'Refresh', 'serpcheap-rank-tracking' ),
-				'remove'     => __( 'Remove', 'serpcheap-rank-tracking' ),
-				'notRanked'  => __( 'Not in top 100', 'serpcheap-rank-tracking' ),
-				'checking'   => __( 'Checking…', 'serpcheap-rank-tracking' ),
-				'noTrackers' => __( 'No keywords tracked yet. Add one above.', 'serpcheap-rank-tracking' ),
-				'confirmDel' => __( 'Remove this tracker and its history?', 'serpcheap-rank-tracking' ),
-				'schedule'   => __( 'Check', 'serpcheap-rank-tracking' ),
-				'perCheck'   => __( 'cr/check', 'serpcheap-rank-tracking' ),
-				'perMonth'   => __( 'cr/mo', 'serpcheap-rank-tracking' ),
-				'onDemand'   => __( 'on demand', 'serpcheap-rank-tracking' ),
-				'estCost'    => __( 'Est. cost', 'serpcheap-rank-tracking' ),
+				'add'        => __( 'Add keyword', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'keyword'    => __( 'Keyword', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'domain'     => __( 'Domain', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'exact'      => __( 'Exact URL', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'refresh'    => __( 'Refresh', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'remove'     => __( 'Remove', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'notRanked'  => __( 'Not in top 100', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'checking'   => __( 'Checking…', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'noTrackers' => __( 'No keywords tracked yet. Add one above.', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'confirmDel' => __( 'Remove this tracker and its history?', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'schedule'   => __( 'Check', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'perCheck'   => __( 'cr/check', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'perMonth'   => __( 'cr/mo', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'onDemand'   => __( 'on demand', 'serpcheap-cheapest-keyword-rank-tracker' ),
+				'estCost'    => __( 'Est. cost', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			),
 		);
 	}

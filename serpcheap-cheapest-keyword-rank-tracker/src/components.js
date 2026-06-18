@@ -16,7 +16,7 @@ export function PagesSelect( { pages, onChange, compact = false } ) {
 		>
 			{ opts.map( ( i ) => (
 				<option key={ i } value={ i }>
-					{ sprintf( __( 'Top %d', 'serpcheap-rank-tracking' ), i * 10 ) }
+					{ sprintf( __( 'Top %d', 'serpcheap-cheapest-keyword-rank-tracker' ), i * 10 ) }
 				</option>
 			) ) }
 		</select>
@@ -63,7 +63,7 @@ export function ScheduleSelect( { schedule, minutes, onChange, compact = false }
 							apply( 'custom', h );
 						} }
 					/>
-					<span>{ __( 'hours', 'serpcheap-rank-tracking' ) }</span>
+					<span>{ __( 'hours', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 				</span>
 			) }
 		</div>
@@ -83,7 +83,7 @@ export function MetricCard( { label, value, sub, accent } ) {
 export function RankBadge( { rank } ) {
 	return (
 		<span className={ `scrt-rank ${ rankClass( rank ) }` }>
-			{ rank === null || rank === undefined ? __( 'Not found', 'serpcheap-rank-tracking' ) : `#${ rank }` }
+			{ rank === null || rank === undefined ? __( 'Not found', 'serpcheap-cheapest-keyword-rank-tracker' ) : `#${ rank }` }
 		</span>
 	);
 }

@@ -35,12 +35,12 @@ final class TermFields {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		echo '<tr class="form-field"><th scope="row">' . esc_html__( 'serp.cheap Rank Tracking', 'serpcheap-rank-tracking' ) . '</th><td>';
+		echo '<tr class="form-field"><th scope="row">' . esc_html__( 'serp.cheap Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ) . '</th><td>';
 		printf(
 			'<div class="serpcheap-rt-metabox" data-serpcheap-metabox data-target-type="term" data-target-ref="%d" data-taxonomy="%s"><p class="serpcheap-muted">%s</p></div>',
 			(int) $term->term_id,
 			esc_attr( $taxonomy ),
-			esc_html__( 'Loading…', 'serpcheap-rank-tracking' )
+			esc_html__( 'Loading…', 'serpcheap-cheapest-keyword-rank-tracker' )
 		);
 		echo '</td></tr>';
 	}

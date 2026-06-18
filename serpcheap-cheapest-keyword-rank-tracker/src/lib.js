@@ -1,13 +1,13 @@
 import { __ } from '@wordpress/i18n';
 
 export const SCHEDULES = [
-	{ value: 'hourly', label: __( 'Every hour', 'serpcheap-rank-tracking' ), minutes: 60 },
-	{ value: '6h', label: __( 'Every 6 hours', 'serpcheap-rank-tracking' ), minutes: 360 },
-	{ value: '12h', label: __( 'Every 12 hours', 'serpcheap-rank-tracking' ), minutes: 720 },
-	{ value: 'daily', label: __( 'Daily', 'serpcheap-rank-tracking' ), minutes: 1440 },
-	{ value: 'weekly', label: __( 'Weekly', 'serpcheap-rank-tracking' ), minutes: 10080 },
-	{ value: 'manual', label: __( 'Manual only', 'serpcheap-rank-tracking' ), minutes: 0 },
-	{ value: 'custom', label: __( 'Custom…', 'serpcheap-rank-tracking' ), minutes: null },
+	{ value: 'hourly', label: __( 'Every hour', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 60 },
+	{ value: '6h', label: __( 'Every 6 hours', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 360 },
+	{ value: '12h', label: __( 'Every 12 hours', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 720 },
+	{ value: 'daily', label: __( 'Daily', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 1440 },
+	{ value: 'weekly', label: __( 'Weekly', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 10080 },
+	{ value: 'manual', label: __( 'Manual only', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: 0 },
+	{ value: 'custom', label: __( 'Custom…', 'serpcheap-cheapest-keyword-rank-tracker' ), minutes: null },
 ];
 
 export const scheduleLabel = ( schedule, minutes ) => {
@@ -16,15 +16,15 @@ export const scheduleLabel = ( schedule, minutes ) => {
 		return preset.label;
 	}
 	if ( ! minutes ) {
-		return __( 'Manual', 'serpcheap-rank-tracking' );
+		return __( 'Manual', 'serpcheap-cheapest-keyword-rank-tracker' );
 	}
 	if ( minutes % 1440 === 0 ) {
-		return `${ __( 'Every', 'serpcheap-rank-tracking' ) } ${ minutes / 1440 }d`;
+		return `${ __( 'Every', 'serpcheap-cheapest-keyword-rank-tracker' ) } ${ minutes / 1440 }d`;
 	}
 	if ( minutes % 60 === 0 ) {
-		return `${ __( 'Every', 'serpcheap-rank-tracking' ) } ${ minutes / 60 }h`;
+		return `${ __( 'Every', 'serpcheap-cheapest-keyword-rank-tracker' ) } ${ minutes / 60 }h`;
 	}
-	return `${ __( 'Every', 'serpcheap-rank-tracking' ) } ${ minutes }m`;
+	return `${ __( 'Every', 'serpcheap-cheapest-keyword-rank-tracker' ) } ${ minutes }m`;
 };
 
 export const targetIcon = ( type ) => {

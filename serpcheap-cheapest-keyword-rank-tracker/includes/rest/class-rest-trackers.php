@@ -157,7 +157,7 @@ final class RestTrackers {
 	public function perm_modify( WP_REST_Request $request ) {
 		$tracker = $this->plugin->trackers()->find( (int) $request['id'] );
 		if ( ! $tracker ) {
-			return new WP_Error( 'not_found', __( 'Tracker not found.', 'serpcheap-rank-tracking' ), array( 'status' => 404 ) );
+			return new WP_Error( 'not_found', __( 'Tracker not found.', 'serpcheap-cheapest-keyword-rank-tracker' ), array( 'status' => 404 ) );
 		}
 		return $this->can_target(
 			$tracker['target_type'],
@@ -199,12 +199,12 @@ final class RestTrackers {
 	public function create( WP_REST_Request $request ) {
 		$type = sanitize_key( (string) $request->get_param( 'target_type' ) );
 		if ( ! in_array( $type, array( 'post', 'term', 'home', 'url' ), true ) ) {
-			return new WP_Error( 'bad_type', __( 'Invalid target type.', 'serpcheap-rank-tracking' ), array( 'status' => 400 ) );
+			return new WP_Error( 'bad_type', __( 'Invalid target type.', 'serpcheap-cheapest-keyword-rank-tracker' ), array( 'status' => 400 ) );
 		}
 
 		$keyword = sanitize_text_field( (string) $request->get_param( 'keyword' ) );
 		if ( '' === $keyword || mb_strlen( $keyword ) > 255 ) {
-			return new WP_Error( 'bad_keyword', __( 'A keyword (1–255 chars) is required.', 'serpcheap-rank-tracking' ), array( 'status' => 400 ) );
+			return new WP_Error( 'bad_keyword', __( 'A keyword (1–255 chars) is required.', 'serpcheap-cheapest-keyword-rank-tracker' ), array( 'status' => 400 ) );
 		}
 
 		$gl         = $this->one_of( sanitize_key( (string) $request->get_param( 'gl' ) ), Plugin::countries(), 'us' );
@@ -221,7 +221,7 @@ final class RestTrackers {
 		$fallback = 'url' === $type ? esc_url_raw( (string) $request->get_param( 'target_url' ) ) : null;
 		$url      = $this->plugin->resolver()->resolve( $type, $ref, $taxonomy, $fallback );
 		if ( ! $url ) {
-			return new WP_Error( 'bad_target', __( 'Could not resolve a URL for this target.', 'serpcheap-rank-tracking' ), array( 'status' => 400 ) );
+			return new WP_Error( 'bad_target', __( 'Could not resolve a URL for this target.', 'serpcheap-cheapest-keyword-rank-tracker' ), array( 'status' => 400 ) );
 		}
 
 		$id = $this->plugin->trackers()->create(
@@ -240,7 +240,7 @@ final class RestTrackers {
 		);
 
 		if ( ! $id ) {
-			return new WP_Error( 'db_error', __( 'Could not save the tracker.', 'serpcheap-rank-tracking' ), array( 'status' => 500 ) );
+			return new WP_Error( 'db_error', __( 'Could not save the tracker.', 'serpcheap-cheapest-keyword-rank-tracker' ), array( 'status' => 500 ) );
 		}
 
 		// Demo: seed believable history so the sparkline renders immediately.

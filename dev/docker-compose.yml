@@ -41,7 +41,7 @@ services:
         define('SERPCHEAP_API_KEY', 'demo-key-local');
     volumes:
       - wp:/var/www/html
-      - ../serpcheap-rank-tracking:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
+      - ../serpcheap-cheapest-keyword-rank-tracker:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
 
   wpcli:
     image: wordpress:cli-php8.2
@@ -58,7 +58,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wp:/var/www/html
-      - ../serpcheap-rank-tracking:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
+      - ../serpcheap-cheapest-keyword-rank-tracker:/var/www/html/wp-content/plugins/serpcheap-rank-tracking
       - ./setup.sh:/setup.sh:ro
       - ./seed.php:/seed.php:ro
     entrypoint: ["sh", "/setup.sh"]

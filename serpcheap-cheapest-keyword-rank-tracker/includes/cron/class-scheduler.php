@@ -27,7 +27,7 @@ final class Scheduler {
 	public function schedules( array $schedules ): array {
 		$schedules['serpcheap_five_minutes'] = array(
 			'interval' => 5 * MINUTE_IN_SECONDS,
-			'display'  => __( 'Every 5 minutes (serp.cheap)', 'serpcheap-rank-tracking' ),
+			'display'  => __( 'Every 5 minutes (serp.cheap)', 'serpcheap-cheapest-keyword-rank-tracker' ),
 		);
 		return $schedules;
 	}

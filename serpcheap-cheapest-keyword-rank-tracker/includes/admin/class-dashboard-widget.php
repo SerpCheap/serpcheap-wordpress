@@ -32,7 +32,7 @@ final class DashboardWidget {
 		}
 		wp_add_dashboard_widget(
 			'serpcheap_rank_widget',
-			__( 'serp.cheap — Rank Tracking', 'serpcheap-rank-tracking' ),
+			__( 'serp.cheap — Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			array( $this, 'render' )
 		);
 	}
@@ -90,15 +90,15 @@ final class DashboardWidget {
 		echo '<div class="serpcheap-rt-widget">';
 
 		echo '<div class="serpcheap-w-stats">';
-		$this->stat( (string) (int) $total, __( 'Tracked', 'serpcheap-rank-tracking' ), false );
-		$this->stat( null !== $avg ? (string) $avg : '—', __( 'Avg position', 'serpcheap-rank-tracking' ), true );
-		$this->stat( (string) (int) $not_found, __( 'Not found', 'serpcheap-rank-tracking' ), false );
-		$this->stat( number_format_i18n( $monthly ), __( 'Credits / month', 'serpcheap-rank-tracking' ), false );
+		$this->stat( (string) (int) $total, __( 'Tracked', 'serpcheap-cheapest-keyword-rank-tracker' ), false );
+		$this->stat( null !== $avg ? (string) $avg : '—', __( 'Avg position', 'serpcheap-cheapest-keyword-rank-tracker' ), true );
+		$this->stat( (string) (int) $not_found, __( 'Not found', 'serpcheap-cheapest-keyword-rank-tracker' ), false );
+		$this->stat( number_format_i18n( $monthly ), __( 'Credits / month', 'serpcheap-cheapest-keyword-rank-tracker' ), false );
 		echo '</div>';
 
 		$alerts = $this->plugin->alerts()->recent( 3 );
 		if ( $alerts ) {
-			echo '<div class="serpcheap-w-movers-title">' . esc_html__( 'Recent alerts', 'serpcheap-rank-tracking' ) . '</div>';
+			echo '<div class="serpcheap-w-movers-title">' . esc_html__( 'Recent alerts', 'serpcheap-cheapest-keyword-rank-tracker' ) . '</div>';
 			echo '<div class="serpcheap-w-alerts">';
 			foreach ( $alerts as $al ) {
 				printf(
@@ -112,7 +112,7 @@ final class DashboardWidget {
 		}
 
 		if ( $movers ) {
-			echo '<div class="serpcheap-w-movers-title">' . esc_html__( 'Top movers · 7 days', 'serpcheap-rank-tracking' ) . '</div>';
+			echo '<div class="serpcheap-w-movers-title">' . esc_html__( 'Top movers · 7 days', 'serpcheap-cheapest-keyword-rank-tracker' ) . '</div>';
 			echo '<div class="serpcheap-w-movers">';
 			foreach ( $movers as $m ) {
 				$up    = $m['delta'] < 0;
@@ -128,14 +128,14 @@ final class DashboardWidget {
 			}
 			echo '</div>';
 		} elseif ( 0 === $total ) {
-			echo '<p class="serpcheap-w-empty">' . esc_html__( 'No trackers yet — add keywords from any post, product or category.', 'serpcheap-rank-tracking' ) . '</p>';
+			echo '<p class="serpcheap-w-empty">' . esc_html__( 'No trackers yet — add keywords from any post, product or category.', 'serpcheap-cheapest-keyword-rank-tracker' ) . '</p>';
 		}
 
 		echo '<div class="serpcheap-w-foot">';
 		printf(
 			'<a class="button button-primary button-small" href="%s">%s</a>',
 			esc_url( admin_url( 'admin.php?page=' . AdminMenu::MENU_SLUG ) ),
-			esc_html__( 'Open dashboard', 'serpcheap-rank-tracking' )
+			esc_html__( 'Open dashboard', 'serpcheap-cheapest-keyword-rank-tracker' )
 		);
 		echo '</div>';
 

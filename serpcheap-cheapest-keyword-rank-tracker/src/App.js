@@ -31,25 +31,25 @@ function Header( { query, setQuery, onAdd, unread, onAlerts } ) {
 				<span className="scrt-brand-name">
 					serp<span className="scrt-brand-dim">.cheap</span>
 				</span>
-				<span className="scrt-brand-tag">{ __( 'Rank Tracking', 'serpcheap-rank-tracking' ) }</span>
+				<span className="scrt-brand-tag">{ __( 'Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 			</div>
 			<div className="scrt-header-actions">
 				<input
 					className="scrt-search"
 					type="search"
-					placeholder={ __( 'Search keywords…', 'serpcheap-rank-tracking' ) }
+					placeholder={ __( 'Search keywords…', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					value={ query }
 					onChange={ ( e ) => setQuery( e.target.value ) }
 				/>
-				<button className="scrt-btn scrt-btn-ghost scrt-bell" onClick={ onAlerts } title={ __( 'Alerts', 'serpcheap-rank-tracking' ) }>
+				<button className="scrt-btn scrt-btn-ghost scrt-bell" onClick={ onAlerts } title={ __( 'Alerts', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 					🔔
 					{ unread > 0 && <span className="scrt-bell-badge">{ unread > 99 ? '99+' : unread }</span> }
 				</button>
 				<button className="scrt-btn scrt-btn-primary" onClick={ onAdd }>
-					+ { __( 'Track target', 'serpcheap-rank-tracking' ) }
+					+ { __( 'Track target', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				</button>
 				{ boot.settingsUrl && (
-					<a className="scrt-btn scrt-btn-ghost" href={ boot.settingsUrl } title={ __( 'Settings', 'serpcheap-rank-tracking' ) }>
+					<a className="scrt-btn scrt-btn-ghost" href={ boot.settingsUrl } title={ __( 'Settings', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 						⚙
 					</a>
 				) }
@@ -76,23 +76,23 @@ function Metrics( { trackers } ) {
 
 	return (
 		<div className="scrt-metrics">
-			<MetricCard label={ __( 'Tracked', 'serpcheap-rank-tracking' ) } value={ trackers.length } />
-			<MetricCard label={ __( 'Avg position', 'serpcheap-rank-tracking' ) } value={ avg } accent="primary" />
+			<MetricCard label={ __( 'Tracked', 'serpcheap-cheapest-keyword-rank-tracker' ) } value={ trackers.length } />
+			<MetricCard label={ __( 'Avg position', 'serpcheap-cheapest-keyword-rank-tracker' ) } value={ avg } accent="primary" />
 			<MetricCard
-				label={ __( 'Top mover (7d)', 'serpcheap-rank-tracking' ) }
+				label={ __( 'Top mover (7d)', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				value={ mover ? `▲ ${ Math.abs( mover.delta_7d ) }` : '—' }
 				sub={ mover ? mover.keyword : '' }
 				accent="green"
 			/>
 			<MetricCard
-				label={ __( 'Not found', 'serpcheap-rank-tracking' ) }
+				label={ __( 'Not found', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				value={ notFound }
 				accent={ notFound ? 'amber' : '' }
 			/>
 			<MetricCard
-				label={ __( 'Est. credits / month', 'serpcheap-rank-tracking' ) }
+				label={ __( 'Est. credits / month', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				value={ fmtCredits( monthly ) }
-				sub={ balance ? `${ fmtCredits( balance ) } ${ __( 'left', 'serpcheap-rank-tracking' ) }` : '' }
+				sub={ balance ? `${ fmtCredits( balance ) } ${ __( 'left', 'serpcheap-cheapest-keyword-rank-tracker' ) }` : '' }
 				accent="amber"
 			/>
 		</div>
@@ -100,11 +100,11 @@ function Metrics( { trackers } ) {
 }
 
 const TYPE_FILTERS = [
-	{ value: '', label: __( 'All targets', 'serpcheap-rank-tracking' ) },
-	{ value: 'post', label: __( 'Posts & products', 'serpcheap-rank-tracking' ) },
-	{ value: 'term', label: __( 'Categories', 'serpcheap-rank-tracking' ) },
-	{ value: 'home', label: __( 'Home', 'serpcheap-rank-tracking' ) },
-	{ value: 'url', label: __( 'URLs', 'serpcheap-rank-tracking' ) },
+	{ value: '', label: __( 'All targets', 'serpcheap-cheapest-keyword-rank-tracker' ) },
+	{ value: 'post', label: __( 'Posts & products', 'serpcheap-cheapest-keyword-rank-tracker' ) },
+	{ value: 'term', label: __( 'Categories', 'serpcheap-cheapest-keyword-rank-tracker' ) },
+	{ value: 'home', label: __( 'Home', 'serpcheap-cheapest-keyword-rank-tracker' ) },
+	{ value: 'url', label: __( 'URLs', 'serpcheap-cheapest-keyword-rank-tracker' ) },
 ];
 
 function Row( { tracker, onSchedule, onRefresh, onDelete, onOpen } ) {
@@ -116,27 +116,27 @@ function Row( { tracker, onSchedule, onRefresh, onDelete, onOpen } ) {
 	};
 	return (
 		<tr className={ busy ? 'is-busy' : '' }>
-			<td className="scrt-c-keyword" data-label={ __( 'Keyword', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-keyword" data-label={ __( 'Keyword', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<button className="scrt-link" onClick={ () => onOpen( tracker ) }>
 					{ tracker.keyword }
 				</button>
 			</td>
-			<td className="scrt-c-target" data-label={ __( 'Target', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-target" data-label={ __( 'Target', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<TargetCell tracker={ tracker } />
 			</td>
-			<td className="scrt-c-country" data-label={ __( 'Country', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-country" data-label={ __( 'Country', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<span className="scrt-flag">{ flag( tracker.gl ) }</span> { tracker.gl.toUpperCase() }
 			</td>
-			<td className="scrt-c-rank" data-label={ __( 'Rank', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-rank" data-label={ __( 'Rank', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<RankBadge rank={ tracker.rank } />
 			</td>
-			<td className="scrt-c-delta" data-label={ __( '7d', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-delta" data-label={ __( '7d', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<Delta delta={ tracker.delta_7d } />
 			</td>
-			<td className="scrt-c-trend" data-label={ __( 'Trend', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-trend" data-label={ __( 'Trend', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<Sparkline data={ tracker.sparkline } />
 			</td>
-			<td className="scrt-c-sched" data-label={ __( 'Schedule', 'serpcheap-rank-tracking' ) }>
+			<td className="scrt-c-sched" data-label={ __( 'Schedule', 'serpcheap-cheapest-keyword-rank-tracker' ) }>
 				<div className="scrt-sched-cell">
 					<ScheduleSelect
 						compact
@@ -146,16 +146,16 @@ function Row( { tracker, onSchedule, onRefresh, onDelete, onOpen } ) {
 					/>
 					<span className="scrt-cost-hint">
 						{ tracker.monthly_cost
-							? `~${ fmtCredits( tracker.monthly_cost ) } ${ __( 'cr/mo', 'serpcheap-rank-tracking' ) }`
-							: __( 'on demand', 'serpcheap-rank-tracking' ) }
+							? `~${ fmtCredits( tracker.monthly_cost ) } ${ __( 'cr/mo', 'serpcheap-cheapest-keyword-rank-tracker' ) }`
+							: __( 'on demand', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</span>
 				</div>
 			</td>
 			<td className="scrt-c-actions" data-label="">
-				<button className="scrt-icon-btn" title={ __( 'Refresh now', 'serpcheap-rank-tracking' ) } onClick={ refresh } disabled={ busy }>
+				<button className="scrt-icon-btn" title={ __( 'Refresh now', 'serpcheap-cheapest-keyword-rank-tracker' ) } onClick={ refresh } disabled={ busy }>
 					{ busy ? '…' : '↻' }
 				</button>
-				<button className="scrt-icon-btn is-danger" title={ __( 'Remove', 'serpcheap-rank-tracking' ) } onClick={ () => onDelete( tracker.id ) }>
+				<button className="scrt-icon-btn is-danger" title={ __( 'Remove', 'serpcheap-cheapest-keyword-rank-tracker' ) } onClick={ () => onDelete( tracker.id ) }>
 					✕
 				</button>
 			</td>
@@ -168,13 +168,13 @@ function CostEstimate( { sched, pages } ) {
 	const perCheck = costPerCheck( pages, true );
 	const monthly = monthlyCost( minutes, perCheck );
 	const heavy = monthly >= 5000;
-	const depth = sprintf( __( 'Top %d', 'serpcheap-rank-tracking' ), pages * 10 );
+	const depth = sprintf( __( 'Top %d', 'serpcheap-cheapest-keyword-rank-tracker' ), pages * 10 );
 
 	if ( minutes <= 0 ) {
 		return (
 			<div className="scrt-cost-box">
 				<span className="scrt-cost-ic">◷</span>
-				{ sprintf( __( '%s · no recurring cost — runs only on manual refresh.', 'serpcheap-rank-tracking' ), depth ) }
+				{ sprintf( __( '%s · no recurring cost — runs only on manual refresh.', 'serpcheap-cheapest-keyword-rank-tracker' ), depth ) }
 			</div>
 		);
 	}
@@ -183,11 +183,11 @@ function CostEstimate( { sched, pages } ) {
 		<div className={ `scrt-cost-box ${ heavy ? 'is-heavy' : '' }` }>
 			<span className="scrt-cost-ic">◉</span>
 			<span>
-				{ depth } · ≈ <strong>{ perCheck }</strong> { __( 'cr / check', 'serpcheap-rank-tracking' ) } ·{' '}
-				{ __( 'up to', 'serpcheap-rank-tracking' ) } <strong>{ fmtCredits( monthly ) }</strong> { __( 'cr / month', 'serpcheap-rank-tracking' ) }
+				{ depth } · ≈ <strong>{ perCheck }</strong> { __( 'cr / check', 'serpcheap-cheapest-keyword-rank-tracker' ) } ·{' '}
+				{ __( 'up to', 'serpcheap-cheapest-keyword-rank-tracker' ) } <strong>{ fmtCredits( monthly ) }</strong> { __( 'cr / month', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 			</span>
 			{ heavy && (
-				<span className="scrt-cost-warn">{ __( 'High cost — fewer pages or lower frequency reduces it.', 'serpcheap-rank-tracking' ) }</span>
+				<span className="scrt-cost-warn">{ __( 'High cost — fewer pages or lower frequency reduces it.', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 			) }
 		</div>
 	);
@@ -206,7 +206,7 @@ function AddModal( { onClose, onCreate } ) {
 
 	const submit = async () => {
 		if ( ! keyword.trim() ) {
-			setErr( __( 'Enter a keyword.', 'serpcheap-rank-tracking' ) );
+			setErr( __( 'Enter a keyword.', 'serpcheap-cheapest-keyword-rank-tracker' ) );
 			return;
 		}
 		setBusy( true );
@@ -223,7 +223,7 @@ function AddModal( { onClose, onCreate } ) {
 			} );
 			onClose();
 		} catch ( e ) {
-			setErr( ( e && e.message ) || __( 'Could not save.', 'serpcheap-rank-tracking' ) );
+			setErr( ( e && e.message ) || __( 'Could not save.', 'serpcheap-cheapest-keyword-rank-tracker' ) );
 			setBusy( false );
 		}
 	};
@@ -231,30 +231,30 @@ function AddModal( { onClose, onCreate } ) {
 	return (
 		<div className="scrt-modal-backdrop" onClick={ onClose }>
 			<div className="scrt-modal" onClick={ ( e ) => e.stopPropagation() }>
-				<h2>{ __( 'Track a new target', 'serpcheap-rank-tracking' ) }</h2>
+				<h2>{ __( 'Track a new target', 'serpcheap-cheapest-keyword-rank-tracker' ) }</h2>
 				<p className="scrt-muted">
-					{ __( 'Track the home page or any URL. Posts, products and categories are tracked from their own edit screens.', 'serpcheap-rank-tracking' ) }
+					{ __( 'Track the home page or any URL. Posts, products and categories are tracked from their own edit screens.', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				</p>
 				<label>
-					{ __( 'Target', 'serpcheap-rank-tracking' ) }
+					{ __( 'Target', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					<select value={ type } onChange={ ( e ) => setType( e.target.value ) }>
-						<option value="home">{ __( 'Home page', 'serpcheap-rank-tracking' ) }</option>
-						<option value="url">{ __( 'Custom URL', 'serpcheap-rank-tracking' ) }</option>
+						<option value="home">{ __( 'Home page', 'serpcheap-cheapest-keyword-rank-tracker' ) }</option>
+						<option value="url">{ __( 'Custom URL', 'serpcheap-cheapest-keyword-rank-tracker' ) }</option>
 					</select>
 				</label>
 				{ type === 'url' && (
 					<label>
-						{ __( 'URL', 'serpcheap-rank-tracking' ) }
+						{ __( 'URL', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<input type="url" placeholder="https://example.com/page" value={ url } onChange={ ( e ) => setUrl( e.target.value ) } />
 					</label>
 				) }
 				<label>
-					{ __( 'Keyword', 'serpcheap-rank-tracking' ) }
-					<input type="text" placeholder={ __( 'best running shoes', 'serpcheap-rank-tracking' ) } value={ keyword } onChange={ ( e ) => setKeyword( e.target.value ) } />
+					{ __( 'Keyword', 'serpcheap-cheapest-keyword-rank-tracker' ) }
+					<input type="text" placeholder={ __( 'best running shoes', 'serpcheap-cheapest-keyword-rank-tracker' ) } value={ keyword } onChange={ ( e ) => setKeyword( e.target.value ) } />
 				</label>
 				<div className="scrt-modal-grid">
 					<label>
-						{ __( 'Country', 'serpcheap-rank-tracking' ) }
+						{ __( 'Country', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<select value={ gl } onChange={ ( e ) => setGl( e.target.value ) }>
 							{ ( boot.countries || [] ).map( ( c ) => (
 								<option key={ c } value={ c }>
@@ -264,18 +264,18 @@ function AddModal( { onClose, onCreate } ) {
 						</select>
 					</label>
 					<label>
-						{ __( 'Match', 'serpcheap-rank-tracking' ) }
+						{ __( 'Match', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<select value={ match } onChange={ ( e ) => setMatch( e.target.value ) }>
-							<option value="domain">{ __( 'Domain', 'serpcheap-rank-tracking' ) }</option>
-							<option value="exact">{ __( 'Exact URL', 'serpcheap-rank-tracking' ) }</option>
+							<option value="domain">{ __( 'Domain', 'serpcheap-cheapest-keyword-rank-tracker' ) }</option>
+							<option value="exact">{ __( 'Exact URL', 'serpcheap-cheapest-keyword-rank-tracker' ) }</option>
 						</select>
 					</label>
 					<label>
-						{ __( 'Depth', 'serpcheap-rank-tracking' ) }
+						{ __( 'Depth', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<PagesSelect pages={ pages } onChange={ setPages } />
 					</label>
 					<label>
-						{ __( 'Check', 'serpcheap-rank-tracking' ) }
+						{ __( 'Check', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<ScheduleSelect schedule="daily" minutes={ 1440 } onChange={ setSched } />
 					</label>
 				</div>
@@ -283,10 +283,10 @@ function AddModal( { onClose, onCreate } ) {
 				{ err && <div className="scrt-error">{ err }</div> }
 				<div className="scrt-modal-actions">
 					<button className="scrt-btn scrt-btn-ghost" onClick={ onClose }>
-						{ __( 'Cancel', 'serpcheap-rank-tracking' ) }
+						{ __( 'Cancel', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</button>
 					<button className="scrt-btn scrt-btn-primary" onClick={ submit } disabled={ busy }>
-						{ busy ? __( 'Saving…', 'serpcheap-rank-tracking' ) : __( 'Track', 'serpcheap-rank-tracking' ) }
+						{ busy ? __( 'Saving…', 'serpcheap-cheapest-keyword-rank-tracker' ) : __( 'Track', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</button>
 				</div>
 			</div>
@@ -316,22 +316,22 @@ function Drawer( { tracker, onClose, onSchedule, onRefresh } ) {
 				</div>
 				<div className="scrt-drawer-stats">
 					<div>
-						<span className="scrt-muted">{ __( 'Position', 'serpcheap-rank-tracking' ) }</span>
+						<span className="scrt-muted">{ __( 'Position', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 						<RankBadge rank={ tracker.rank } />
 					</div>
 					<div>
-						<span className="scrt-muted">{ __( 'Change 7d', 'serpcheap-rank-tracking' ) }</span>
+						<span className="scrt-muted">{ __( 'Change 7d', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 						<Delta delta={ tracker.delta_7d } />
 					</div>
 					<div>
-						<span className="scrt-muted">{ __( 'Country', 'serpcheap-rank-tracking' ) }</span>
+						<span className="scrt-muted">{ __( 'Country', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 						<span>{ flag( tracker.gl ) } { tracker.gl.toUpperCase() }</span>
 					</div>
 					<div>
-						<span className="scrt-muted">{ __( 'Est. / month', 'serpcheap-rank-tracking' ) }</span>
+						<span className="scrt-muted">{ __( 'Est. / month', 'serpcheap-cheapest-keyword-rank-tracker' ) }</span>
 						<span>
 							{ tracker.monthly_cost
-								? `${ fmtCredits( tracker.monthly_cost ) } ${ __( 'cr', 'serpcheap-rank-tracking' ) }`
+								? `${ fmtCredits( tracker.monthly_cost ) } ${ __( 'cr', 'serpcheap-cheapest-keyword-rank-tracker' ) }`
 								: '—' }
 						</span>
 					</div>
@@ -339,7 +339,7 @@ function Drawer( { tracker, onClose, onSchedule, onRefresh } ) {
 				<RankChart history={ tracker.history } />
 				<div className="scrt-drawer-controls">
 					<label>
-						{ __( 'Check frequency', 'serpcheap-rank-tracking' ) }
+						{ __( 'Check frequency', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<ScheduleSelect
 							schedule={ tracker.schedule }
 							minutes={ tracker.interval_minutes }
@@ -347,11 +347,11 @@ function Drawer( { tracker, onClose, onSchedule, onRefresh } ) {
 						/>
 					</label>
 					<label>
-						{ __( 'Search depth', 'serpcheap-rank-tracking' ) }
+						{ __( 'Search depth', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						<PagesSelect pages={ tracker.pages || 1 } onChange={ ( p ) => onSchedule( tracker.id, { pages: p } ) } />
 					</label>
 					<button className="scrt-btn scrt-btn-primary" onClick={ refresh } disabled={ busy }>
-						{ busy ? __( 'Checking…', 'serpcheap-rank-tracking' ) : __( 'Refresh now', 'serpcheap-rank-tracking' ) }
+						{ busy ? __( 'Checking…', 'serpcheap-cheapest-keyword-rank-tracker' ) : __( 'Refresh now', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</button>
 				</div>
 			</aside>
@@ -365,18 +365,18 @@ function AlertsDrawer( { data, onClose, onMarkRead } ) {
 		<div className="scrt-drawer-backdrop" onClick={ onClose }>
 			<aside className="scrt-drawer scrt-alerts" onClick={ ( e ) => e.stopPropagation() }>
 				<div className="scrt-drawer-head">
-					<h2>{ __( 'Alerts', 'serpcheap-rank-tracking' ) }</h2>
+					<h2>{ __( 'Alerts', 'serpcheap-cheapest-keyword-rank-tracker' ) }</h2>
 					<div>
 						{ items.length > 0 && (
 							<button className="scrt-btn scrt-btn-ghost" onClick={ onMarkRead }>
-								{ __( 'Mark all read', 'serpcheap-rank-tracking' ) }
+								{ __( 'Mark all read', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 							</button>
 						) }
 						<button className="scrt-icon-btn" onClick={ onClose }>✕</button>
 					</div>
 				</div>
 				{ items.length === 0 ? (
-					<div className="scrt-empty">{ __( 'No alerts. Rank changes will show up here.', 'serpcheap-rank-tracking' ) }</div>
+					<div className="scrt-empty">{ __( 'No alerts. Rank changes will show up here.', 'serpcheap-cheapest-keyword-rank-tracker' ) }</div>
 				) : (
 					<ul className="scrt-alert-list">
 						{ items.map( ( a ) => (
@@ -392,7 +392,7 @@ function AlertsDrawer( { data, onClose, onMarkRead } ) {
 				) }
 				{ boot.settingsUrl && (
 					<p className="scrt-alerts-foot">
-						<a href={ boot.settingsUrl }>{ __( 'Configure alert rules →', 'serpcheap-rank-tracking' ) }</a>
+						<a href={ boot.settingsUrl }>{ __( 'Configure alert rules →', 'serpcheap-cheapest-keyword-rank-tracker' ) }</a>
 					</p>
 				) }
 			</aside>
@@ -451,7 +451,7 @@ export default function App() {
 	};
 	const onDelete = async ( id ) => {
 		// eslint-disable-next-line no-alert
-		if ( ! window.confirm( __( 'Remove this tracker and its history?', 'serpcheap-rank-tracking' ) ) ) {
+		if ( ! window.confirm( __( 'Remove this tracker and its history?', 'serpcheap-cheapest-keyword-rank-tracker' ) ) ) {
 			return;
 		}
 		await deleteTracker( id );
@@ -480,20 +480,20 @@ export default function App() {
 
 			{ boot.mock && (
 				<div className="scrt-demo-banner">
-					<strong>{ __( 'Demo mode', 'serpcheap-rank-tracking' ) }</strong>{' '}
-					{ __( 'ranks are mocked locally so you can test the full experience without a serp.cheap account.', 'serpcheap-rank-tracking' ) }
+					<strong>{ __( 'Demo mode', 'serpcheap-cheapest-keyword-rank-tracker' ) }</strong>{' '}
+					{ __( 'ranks are mocked locally so you can test the full experience without a serp.cheap account.', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 				</div>
 			) }
 
 			{ ! boot.mock && ! boot.connected && (
 				<div className="scrt-connect-banner">
 					<span>
-						<strong>{ __( 'Not connected.', 'serpcheap-rank-tracking' ) }</strong>{' '}
-						{ __( 'Connect your serp.cheap account to start tracking real Google rankings.', 'serpcheap-rank-tracking' ) }
+						<strong>{ __( 'Not connected.', 'serpcheap-cheapest-keyword-rank-tracker' ) }</strong>{' '}
+						{ __( 'Connect your serp.cheap account to start tracking real Google rankings.', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</span>
 					{ boot.settingsUrl && (
 						<a className="scrt-btn scrt-btn-primary" href={ boot.settingsUrl }>
-							{ __( 'Connect →', 'serpcheap-rank-tracking' ) }
+							{ __( 'Connect →', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 						</a>
 					) }
 				</div>
@@ -514,28 +514,28 @@ export default function App() {
 					) ) }
 				</div>
 				<span className="scrt-count">
-					{ filtered.length } { __( 'of', 'serpcheap-rank-tracking' ) } { trackers.length }
+					{ filtered.length } { __( 'of', 'serpcheap-cheapest-keyword-rank-tracker' ) } { trackers.length }
 				</span>
 			</div>
 
 			<div className="scrt-panel">
 				{ loading ? (
-					<div className="scrt-empty">{ __( 'Loading…', 'serpcheap-rank-tracking' ) }</div>
+					<div className="scrt-empty">{ __( 'Loading…', 'serpcheap-cheapest-keyword-rank-tracker' ) }</div>
 				) : filtered.length === 0 ? (
 					<div className="scrt-empty">
-						{ __( 'No trackers yet. Add a target, or track keywords from a post/product edit screen.', 'serpcheap-rank-tracking' ) }
+						{ __( 'No trackers yet. Add a target, or track keywords from a post/product edit screen.', 'serpcheap-cheapest-keyword-rank-tracker' ) }
 					</div>
 				) : (
 					<table className="scrt-table">
 						<thead>
 							<tr>
-								<th>{ __( 'Keyword', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( 'Target', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( 'Country', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( 'Rank', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( '7d', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( 'Trend', 'serpcheap-rank-tracking' ) }</th>
-								<th>{ __( 'Schedule', 'serpcheap-rank-tracking' ) }</th>
+								<th>{ __( 'Keyword', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( 'Target', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( 'Country', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( 'Rank', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( '7d', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( 'Trend', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
+								<th>{ __( 'Schedule', 'serpcheap-cheapest-keyword-rank-tracker' ) }</th>
 								<th></th>
 							</tr>
 						</thead>

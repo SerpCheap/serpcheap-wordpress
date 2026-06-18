@@ -1,4 +1,4 @@
-# serp.cheap Rank Tracking — WordPress plugin
+# SerpCheap — Cheapest Keyword Rank Tracker (WordPress plugin)
 
 Track where your posts, pages, WooCommerce products, category archives and home
 page rank on Google — right inside the WordPress admin. Powered by the
@@ -29,16 +29,18 @@ page rank on Google — right inside the WordPress admin. Powered by the
 
 ## Install
 
-Install via **Plugins → Add New → Upload** with a zip of `serpcheap-rank-tracking/`,
-or copy that directory into `wp-content/plugins/`. The built admin app under
-`serpcheap-rank-tracking/build/` is committed, so no build step is required to run it.
+Install via **Plugins → Add New → Upload** with a zip of
+`serpcheap-cheapest-keyword-rank-tracker/`, or copy that directory into
+`wp-content/plugins/`. The built admin app under
+`serpcheap-cheapest-keyword-rank-tracker/build/` is committed, so no build step is
+required to run it.
 
 Then open **serp.cheap → Settings → Connect to serp.cheap**.
 
 ## Development
 
 ```bash
-cd serpcheap-rank-tracking
+cd serpcheap-cheapest-keyword-rank-tracker
 composer install      # PHP dev deps (PHPUnit)
 composer test         # unit tests (cost model, scheduling, encrypted key store)
 

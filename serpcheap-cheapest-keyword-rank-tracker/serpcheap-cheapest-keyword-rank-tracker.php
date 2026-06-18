@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       serp.cheap Rank Tracking
+ * Plugin Name:       SerpCheap - Cheapest Keyword Rank Tracker
  * Plugin URI:        https://github.com/SerpCheap/serpcheap-wordpress
  * Description:       Track where your posts, pages, products, categories and home page rank on Google — powered by the serp.cheap Google Search API.
  * Version:           1.0.0
@@ -10,7 +10,7 @@
  * Author URI:        https://serp.cheap
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       serpcheap-rank-tracking
+ * Text Domain:       serpcheap-cheapest-keyword-rank-tracker
  * Domain Path:       /languages
  *
  * @package Serpcheap\RankTracking

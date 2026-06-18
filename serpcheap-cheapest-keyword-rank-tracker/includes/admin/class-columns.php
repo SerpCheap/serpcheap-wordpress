@@ -35,7 +35,7 @@ final class Columns {
 
 	/** @param array<string,string> $columns @return array<string,string> */
 	public function add_column( array $columns ): array {
-		$columns['serpcheap_rank'] = __( 'Rank', 'serpcheap-rank-tracking' );
+		$columns['serpcheap_rank'] = __( 'Rank', 'serpcheap-cheapest-keyword-rank-tracker' );
 		return $columns;
 	}
 
@@ -63,7 +63,7 @@ final class Columns {
 				esc_html(
 					sprintf(
 						/* translators: %d: number of tracked keywords */
-						_n( '%d keyword', '%d keywords', $count, 'serpcheap-rank-tracking' ),
+						_n( '%d keyword', '%d keywords', $count, 'serpcheap-cheapest-keyword-rank-tracker' ),
 						$count
 					)
 				)
@@ -77,7 +77,7 @@ final class Columns {
 			esc_html(
 				sprintf(
 					/* translators: %d: number of tracked keywords */
-					_n( '%d keyword', '%d keywords', $count, 'serpcheap-rank-tracking' ),
+					_n( '%d keyword', '%d keywords', $count, 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$count
 				)
 			)

@@ -56,7 +56,7 @@ final class Plugin {
 
 	/** Wire up all hooks. */
 	public function boot(): void {
-		load_plugin_textdomain( 'serpcheap-rank-tracking', false, dirname( SERPCHEAP_RT_BASENAME ) . '/languages' );
+		load_plugin_textdomain( 'serpcheap-cheapest-keyword-rank-tracker', false, dirname( SERPCHEAP_RT_BASENAME ) . '/languages' );
 		Activator::maybe_upgrade();
 
 		( new Rest\RestTrackers( $this ) )->register();

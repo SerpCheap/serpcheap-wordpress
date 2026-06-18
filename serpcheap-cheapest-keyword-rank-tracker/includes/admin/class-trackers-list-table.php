@@ -39,22 +39,22 @@ final class TrackersListTable extends WP_List_Table {
 	public function get_columns(): array {
 		return array(
 			'cb'           => '<input type="checkbox" />',
-			'keyword'      => __( 'Keyword', 'serpcheap-rank-tracking' ),
-			'target'       => __( 'Target', 'serpcheap-rank-tracking' ),
-			'country'      => __( 'Country', 'serpcheap-rank-tracking' ),
-			'match_type'   => __( 'Match', 'serpcheap-rank-tracking' ),
-			'rank'         => __( 'Rank', 'serpcheap-rank-tracking' ),
-			'delta'        => __( 'Δ 7d', 'serpcheap-rank-tracking' ),
-			'trend'        => __( 'Trend', 'serpcheap-rank-tracking' ),
-			'last_checked' => __( 'Last checked', 'serpcheap-rank-tracking' ),
+			'keyword'      => __( 'Keyword', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'target'       => __( 'Target', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'country'      => __( 'Country', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'match_type'   => __( 'Match', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'rank'         => __( 'Rank', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'delta'        => __( 'Δ 7d', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'trend'        => __( 'Trend', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'last_checked' => __( 'Last checked', 'serpcheap-cheapest-keyword-rank-tracker' ),
 		);
 	}
 
 	/** @return array<string,string> */
 	protected function get_bulk_actions(): array {
 		return array(
-			'refresh' => __( 'Refresh now', 'serpcheap-rank-tracking' ),
-			'delete'  => __( 'Delete', 'serpcheap-rank-tracking' ),
+			'refresh' => __( 'Refresh now', 'serpcheap-cheapest-keyword-rank-tracker' ),
+			'delete'  => __( 'Delete', 'serpcheap-cheapest-keyword-rank-tracker' ),
 		);
 	}
 
@@ -115,12 +115,12 @@ final class TrackersListTable extends WP_List_Table {
 			'refresh' => sprintf(
 				'<a href="#" data-serpcheap-row="refresh" data-id="%d">%s</a>',
 				$id,
-				esc_html__( 'Refresh', 'serpcheap-rank-tracking' )
+				esc_html__( 'Refresh', 'serpcheap-cheapest-keyword-rank-tracker' )
 			),
 			'delete'  => sprintf(
 				'<a href="#" class="serpcheap-del" data-serpcheap-row="delete" data-id="%d">%s</a>',
 				$id,
-				esc_html__( 'Delete', 'serpcheap-rank-tracking' )
+				esc_html__( 'Delete', 'serpcheap-cheapest-keyword-rank-tracker' )
 			),
 		);
 		return '<strong>' . esc_html( $item['keyword'] ) . '</strong>' . $this->row_actions( $actions );
@@ -152,7 +152,7 @@ final class TrackersListTable extends WP_List_Table {
 	/** @param array<string,mixed> $item */
 	protected function column_rank( $item ): string {
 		if ( null === $item['current_rank'] ) {
-			return '<span class="serpcheap-muted">' . esc_html__( '—', 'serpcheap-rank-tracking' ) . '</span>';
+			return '<span class="serpcheap-muted">' . esc_html__( '—', 'serpcheap-cheapest-keyword-rank-tracker' ) . '</span>';
 		}
 		return '<span class="serpcheap-rank">#' . (int) $item['current_rank'] . '</span>';
 	}
@@ -189,7 +189,7 @@ final class TrackersListTable extends WP_List_Table {
 			return '<span class="serpcheap-muted">—</span>';
 		}
 		$ts = strtotime( $item['last_checked'] . ' UTC' );
-		return esc_html( sprintf( /* translators: %s: human time diff */ __( '%s ago', 'serpcheap-rank-tracking' ), human_time_diff( $ts ) ) );
+		return esc_html( sprintf( /* translators: %s: human time diff */ __( '%s ago', 'serpcheap-cheapest-keyword-rank-tracker' ), human_time_diff( $ts ) ) );
 	}
 
 	/** @param array<string,mixed> $item @param string $column_name */
@@ -198,7 +198,7 @@ final class TrackersListTable extends WP_List_Table {
 	}
 
 	public function no_items(): void {
-		esc_html_e( 'No trackers yet. Add keywords from a post/page/product edit screen, or track the home page above.', 'serpcheap-rank-tracking' );
+		esc_html_e( 'No trackers yet. Add keywords from a post/page/product edit screen, or track the home page above.', 'serpcheap-cheapest-keyword-rank-tracker' );
 	}
 
 	/**

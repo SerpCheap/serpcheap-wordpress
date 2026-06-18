@@ -1,8 +1,8 @@
-=== serp.cheap Rank Tracking ===
+=== SerpCheap - Cheapest Keyword Rank Tracker ===
 Contributors: serpcheap
 Tags: seo, rank tracking, google, serp, woocommerce
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -43,7 +43,7 @@ This plugin connects to the serp.cheap Search API (https://serp.cheap) to fetch 
 
 == Installation ==
 
-1. Install via Plugins → Add New → Upload, or upload the `serpcheap-rank-tracking` folder to `/wp-content/plugins/`.
+1. Install via Plugins → Add New → Upload, or upload the `serpcheap-cheapest-keyword-rank-tracker` folder to `/wp-content/plugins/`.
 2. Activate the plugin.
 3. Open **serp.cheap → Settings** and click **Connect to serp.cheap** — sign in (or create a free account) and authorize your site.
 4. Edit any post / page / product, add a keyword in the "serp.cheap — Rank Tracking" box, and the rank appears. Manage everything from **serp.cheap → Rank Tracking**.

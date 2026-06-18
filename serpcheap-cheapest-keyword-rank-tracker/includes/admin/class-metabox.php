@@ -41,8 +41,8 @@ final class Metabox {
 
 		foreach ( $types as $type ) {
 			add_meta_box(
-				'serpcheap-rank-tracking',
-				__( 'serp.cheap — Rank Tracking', 'serpcheap-rank-tracking' ),
+				'serpcheap-cheapest-keyword-rank-tracker',
+				__( 'serp.cheap — Rank Tracking', 'serpcheap-cheapest-keyword-rank-tracker' ),
 				array( $this, 'render' ),
 				$type,
 				'side',
@@ -58,7 +58,7 @@ final class Metabox {
 		printf(
 			'<div class="serpcheap-rt-metabox" data-serpcheap-metabox data-target-type="post" data-target-ref="%d"><p class="serpcheap-muted">%s</p></div>',
 			(int) $post->ID,
-			esc_html__( 'Loading…', 'serpcheap-rank-tracking' )
+			esc_html__( 'Loading…', 'serpcheap-cheapest-keyword-rank-tracker' )
 		);
 	}
 }

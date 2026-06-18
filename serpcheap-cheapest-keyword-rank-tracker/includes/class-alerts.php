@@ -90,7 +90,7 @@ final class Alerts {
 				'severity' => 'critical',
 				'message'  => sprintf(
 					/* translators: %d: previous rank */
-					__( 'Dropped out of results (was #%d).', 'serpcheap-rank-tracking' ),
+					__( 'Dropped out of results (was #%d).', 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$old
 				),
 			);
@@ -104,7 +104,7 @@ final class Alerts {
 					'severity' => 'success',
 					'message'  => sprintf(
 						/* translators: %d: new rank */
-						__( 'Now ranking at #%d.', 'serpcheap-rank-tracking' ),
+						__( 'Now ranking at #%d.', 'serpcheap-cheapest-keyword-rank-tracker' ),
 						$new
 					),
 				);
@@ -120,7 +120,7 @@ final class Alerts {
 				'severity' => $new > 10 ? 'critical' : 'warning',
 				'message'  => sprintf(
 					/* translators: 1: positions dropped, 2: old rank, 3: new rank */
-					__( 'Fell %1$d positions (#%2$d → #%3$d).', 'serpcheap-rank-tracking' ),
+					__( 'Fell %1$d positions (#%2$d → #%3$d).', 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$delta,
 					$old,
 					$new
@@ -134,7 +134,7 @@ final class Alerts {
 				'severity' => 'warning',
 				'message'  => sprintf(
 					/* translators: %d: new rank */
-					__( 'Left the top 3 (now #%d).', 'serpcheap-rank-tracking' ),
+					__( 'Left the top 3 (now #%d).', 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$new
 				),
 			);
@@ -144,7 +144,7 @@ final class Alerts {
 				'severity' => 'warning',
 				'message'  => sprintf(
 					/* translators: %d: new rank */
-					__( 'Left the top 10 (now #%d).', 'serpcheap-rank-tracking' ),
+					__( 'Left the top 10 (now #%d).', 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$new
 				),
 			);
@@ -156,7 +156,7 @@ final class Alerts {
 				'severity' => 'success',
 				'message'  => sprintf(
 					/* translators: 1: old rank, 2: new rank */
-					__( 'Back in the top 10 (#%1$d → #%2$d).', 'serpcheap-rank-tracking' ),
+					__( 'Back in the top 10 (#%1$d → #%2$d).', 'serpcheap-cheapest-keyword-rank-tracker' ),
 					$old,
 					$new
 				),
@@ -176,12 +176,12 @@ final class Alerts {
 		}
 		$subject = sprintf(
 			/* translators: %s: keyword */
-			__( '[serp.cheap] Rank alert for "%s"', 'serpcheap-rank-tracking' ),
+			__( '[serp.cheap] Rank alert for "%s"', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			$keyword
 		);
 		$body = sprintf(
 			/* translators: %s: keyword */
-			__( 'Keyword: %s', 'serpcheap-rank-tracking' ),
+			__( 'Keyword: %s', 'serpcheap-cheapest-keyword-rank-tracker' ),
 			$keyword
 		) . "\n\n" . implode( "\n", $lines ) . "\n";
 
