@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       serp.cheap Rank Tracking
- * Plugin URI:        https://serp.cheap
+ * Plugin URI:        https://github.com/SerpCheap/serpcheap-wordpress
  * Description:       Track where your posts, pages, products, categories and home page rank on Google — powered by the serp.cheap Google Search API.
  * Version:           1.0.0
  * Requires at least: 6.0
